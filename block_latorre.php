@@ -22,11 +22,23 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- class block_latorre extends block_base 
- {
+class block_latorre extends block_base
+{
     public function init()
     {
         $this->title = get_string('pluginname', 'block_latorre');
     }
- }
- 
+
+    public function get_content()
+    {
+        if ($this->content !== null) {
+            return $this->content;
+        }
+
+        $this->content = new stdClass;
+        $this->content->text = 'The content of our Latorre block!';
+        $this->content->footer = 'Footer here...';
+
+        return $this->content;
+    }
+}
