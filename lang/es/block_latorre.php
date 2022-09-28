@@ -23,7 +23,7 @@
  */
 
 $string['pluginname'] = 'Latorre, bloque';
-$string['simplehtml'] = 'Latorre';
-$string['simplehtml:addinstance'] = 'Agrega un nuevo bloque latorre';
-$string['simplehtml:myaddinstance'] = 'Agrega un nuevo bloque latorre a la página My Moodle';
+$string['latorre'] = 'Latorre';
+$string['latorre:addinstance'] = 'Agregar un nuevo bloque latorre';
+$string['latorre:myaddinstance'] = 'Agregar un nuevo bloque latorre a la página My Moodle';
 $string['blockstring'] = 'Valor:';
