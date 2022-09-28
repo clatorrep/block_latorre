@@ -24,11 +24,6 @@
 
 $string['pluginname'] = 'Latorre, bloque';
 $string['latorre'] = 'Latorre';
-<<<<<<< HEAD
 $string['latorre:addinstance'] = 'Agregar un nuevo bloque latorre';
 $string['latorre:myaddinstance'] = 'Agregar un nuevo bloque latorre a la página My Moodle';
-=======
-$string['latorre:addinstance'] = 'Agrega un nuevo bloque latorre';
-$string['latorre:myaddinstance'] = 'Agrega un nuevo bloque latorre a la página My Moodle';
->>>>>>> 01e102d0fc2ebb797cfbfa7de64ce2d084555d58
 $string['blockstring'] = 'Valor:';
