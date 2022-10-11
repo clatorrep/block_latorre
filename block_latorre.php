@@ -29,4 +29,17 @@ class block_latorre extends block_base
         $this->title = get_string('pluginname', 'block_latorre');
     }
 
+    public function get_content()
+    {
+        if ($this->content !== null) {
+            return $this->content;
+        }
+
+        $this->content = new stdClass;
+        $this->content->text = '<h2><b>Este es el bloque del Latorre</b></h2>';
+        $this->content->footer = '<i>Todos los derechos reservados.</i>';
+
+        return $this->content;
+    }
+
 }
