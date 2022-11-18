@@ -31,7 +31,10 @@ class block_latorre extends block_base
 
     public function get_content()
     {
-        if ($this->content !== null) {
+        // Deshabilitar
+        if ($this->config->disabled) {
+            return null;
+        }else if ($this->content !== null) {
             return $this->content;
         }
 
@@ -51,12 +54,14 @@ class block_latorre extends block_base
     public function specialization()
     {
         if (isset($this->config)) {
+            // Titulo
             if (empty($this->config->title)) {
                 $this->title = get_string('defaulttitle', 'block_latorre');
             } else {
                 $this->title = $this->config->title;
             }
 
+            // Texto
             if (empty($this->config->text)) {
                 $this->config->text = get_string('defaulttext', 'block_latorre');
             }

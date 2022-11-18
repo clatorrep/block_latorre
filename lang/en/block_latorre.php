@@ -30,3 +30,4 @@ $string['blockstring'] = 'Text:';
 $string['blocktitle'] = 'Title:';
 $string['defaulttitle'] = 'Latorre\'s Block';
 $string['defaulttext'] = 'Lorem ipsum';
+$string['blockdisabled'] = 'Bloque deshabilitado';

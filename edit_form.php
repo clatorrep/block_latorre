@@ -38,5 +38,13 @@ class block_latorre_edit_form extends block_edit_form
         $mform->addElement('text', 'config_text', get_string('blockstring', 'block_latorre'));
         $mform->setDefault('config_text', 'Default Text');
         $mform->setType('config_text', PARAM_RAW);
+
+        // Ocutar
+        $mform->addElement(
+            'advcheckbox',
+            'config_disabled',
+            get_string('blockdisabled', 'block_latorre'),
+            'Desactivar el bloque'
+        );
     }
 }
