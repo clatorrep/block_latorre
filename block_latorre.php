@@ -39,13 +39,27 @@ class block_latorre extends block_base
 
         if (!empty($this->config->text)) {
             $this->content->text = $this->config->text;
-        }else {
+        } else {
             $this->content->text = '<h2><b>Este es el bloque del Latorre</b></h2>';
         }
-        
-        $this->content->footer = '<i>Todos los derechos reservados.</i>';
+
+        $this->content->footer = '<i><small>Todos los derechos reservados.</small></i>';
 
         return $this->content;
     }
 
+    public function specialization()
+    {
+        if (isset($this->config)) {
+            if (empty($this->config->title)) {
+                $this->title = get_string('defaulttitle', 'block_latorre');
+            } else {
+                $this->title = $this->config->title;
+            }
+
+            if (empty($this->config->text)) {
+                $this->config->text = get_string('defaulttext', 'block_latorre');
+            }
+        }
+    }
 }

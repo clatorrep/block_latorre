@@ -22,17 +22,21 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- class block_latorre_edit_form extends block_edit_form
- {
+class block_latorre_edit_form extends block_edit_form
+{
     protected function specific_definition($mform)
-    {   
+    {
         // Sección de configuracion de parámetros
         $mform->addElement('header', 'config_header', get_string('blocksettings', 'block'));
-        
+
+        // Crear el parámetro para el título del bloque
+        $mform->addElement('text', 'config_title', get_string('blocktitle', 'block_latorre'));
+        $mform->setDefault('config_title', 'Default Title');
+        $mform->setType('config_title', PARAM_RAW);
+
         // Una cadena de texto a desplegarse
         $mform->addElement('text', 'config_text', get_string('blockstring', 'block_latorre'));
-        $mform->setDefault('config_text', 'Default value');
+        $mform->setDefault('config_text', 'Default Text');
         $mform->setType('config_text', PARAM_RAW);
     }
- }
- 
+}
