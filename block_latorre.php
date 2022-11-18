@@ -36,7 +36,13 @@ class block_latorre extends block_base
         }
 
         $this->content = new stdClass;
-        $this->content->text = '<h2><b>Este es el bloque del Latorre</b></h2>';
+
+        if (!empty($this->config->text)) {
+            $this->content->text = $this->config->text;
+        }else {
+            $this->content->text = '<h2><b>Este es el bloque del Latorre</b></h2>';
+        }
+        
         $this->content->footer = '<i>Todos los derechos reservados.</i>';
 
         return $this->content;
