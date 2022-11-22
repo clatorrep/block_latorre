@@ -26,8 +26,13 @@ $string['pluginname'] = 'Latorre block';
 $string['latorre'] = 'Latorre';
 $string['latorre:addinstance'] = 'Add a new latorre block';
 $string['latorre:myaddinstance'] = 'Add a new latorre block to the My Moodle page';
+
 $string['blockstring'] = 'Text:';
 $string['blocktitle'] = 'Title:';
 $string['defaulttitle'] = 'Latorre\'s Block';
 $string['defaulttext'] = 'Lorem ipsum';
+
 $string['blockdisabled'] = 'Bloque deshabilitado';
+
+$string['allowhtml'] = 'Disable html';
+$string['allowhtml_desc'] = 'Disable html in the block latorre';

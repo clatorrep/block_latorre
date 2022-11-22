@@ -34,7 +34,7 @@ class block_latorre extends block_base
         // Deshabilitar
         if ($this->config->disabled) {
             return null;
-        }else if ($this->content !== null) {
+        } else if ($this->content !== null) {
             return $this->content;
         }
 
@@ -66,5 +66,15 @@ class block_latorre extends block_base
                 $this->config->text = get_string('defaulttext', 'block_latorre');
             }
         }
+    }
+
+    public function instance_allow_multipe()
+    {
+        return true;
+    }
+
+    public function has_config()
+    {
+        return true;
     }
 }

@@ -15,24 +15,22 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'block_latorre', language 'en'
+ * Latorre block's settings
  *
  * @package   block_latorre
  * @copyright 2022 Cristóbal Latorre Padilla - clatorre@bcnschool.cl
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Latorre, bloque';
-$string['latorre'] = 'Latorre';
-$string['latorre:addinstance'] = 'Agregar un nuevo bloque latorre';
-$string['latorre:myaddinstance'] = 'Agregar un nuevo bloque latorre a la página My Moodle';
+ defined('MOODLE_INTERNAL') || die;
 
-$string['blockstring'] = 'Texto:';
-$string['blocktitle'] = 'Título:';
-$string['defaulttitle'] = 'Block del Latorre';
-$string['defaulttext'] = 'Lorem ipsum';
-
-$string['blockdisabled'] = 'Bloque deshabilitado';
-
-$string['allowhtml'] = 'Desactivar html';
-$string['allowhtml_desc'] = 'Desactivar html en el bloque latorre';
+ if ($ADMIN->fulltree) {
+    $settings->add(
+        new admin_setting_configcheckbox(
+            'block_latorre_allowhtml',
+            get_string('allowhtml', 'block_latorre'),
+            get_string('allowhtml_desc', 'block_latorre'),
+            0
+        )
+    );
+ }
