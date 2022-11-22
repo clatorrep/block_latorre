@@ -52,3 +52,5 @@ $string['pictureselect'] = 'Pick a color';
 $string['red'] = 'Red';
 $string['green'] = 'Green';
 $string['blue'] = 'Blue';
+
+$string['displaydate'] = 'Display timedate';

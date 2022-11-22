@@ -57,6 +57,12 @@
             $radioarray[] =& $mform->createElement('radio', 'picture', '', $images[$i], $i);
         }
         $mform->addGroup($radioarray, 'radioar', get_string('pictureselect', 'block_latorre'), array(' '), false);
+
+        // Fechas
+        $mform->addElement('header', 'dateinfo', get_string('date'));
+        // Selectores
+        $mform->addElement('date_time_selector', 'displaydate', get_string('displaydate', 'block_latorre'), array('optional' => true));
+        $mform->setAdvanced('optional');
     }
  }
  
