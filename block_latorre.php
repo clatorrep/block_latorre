@@ -68,6 +68,18 @@ class block_latorre extends block_base
         }
     }
 
+    public function instance_config_save($data, $nolongerused = false)
+    {
+        global $CFG;
+
+        if (!empty($CFG->block_latorre_allowhtml)) {
+            $data->text = strip_tags($data->text);
+        }
+
+        // Implementación predeterminada definida en la clase principal
+        return parent::instance_config_save($data, $nolongerused);
+    }
+
     public function instance_allow_multipe()
     {
         return true;
