@@ -45,3 +45,5 @@ $string['latorresettings'] = 'Latorre';
 $string['editpage'] = 'Editar parámetros';
 $string['pagetitle'] = 'Título de la página';
 $string['displaytext'] = 'Page resume';
+$string['displaypicture'] = 'Desplegar la imagen';
+$string['picturefields'] = 'Imagen';

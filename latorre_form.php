@@ -38,6 +38,16 @@
         $mform->addElement('editor', 'displaytext', get_string('displaytext', 'block_latorre'));
         $mform->setType('displaytext', PARAM_RAW);
         $mform->addRule('displaytext', null, 'required', null, 'clioent');
+
+        // File picker
+        $mform->addElement('filepicker', 'filename', get_string('file'), null, array('accepted_types' => '*'));
+
+        // Un grupo de elementos de la imagen
+        $mform->addElement('header', 'picfield', get_string('picturefields', 'block_latorre'), null, false);
+
+        // Opcion si/no
+        $mform->addElement('selectyesno', 'displaypicture', get_string('displaypicture', 'block_latorre'));
+        $mform->setDefault('displaypicture', 1);
     }
  }
  
