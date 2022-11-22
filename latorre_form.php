@@ -30,6 +30,14 @@
     {
         $mform =& $this->_form;
         $mform->addElement('header', 'displayinfo', get_string('textfields', 'block_latorre'));
+
+        $mform->addElement('text', 'pagetitle', get_string('pagetitle', 'block_latorre'));
+        $mform->setType('pagetitle', PARAM_RAW);
+        $mform->addRule('pagetitle', null, 'required', null, 'clioent');
+        
+        $mform->addElement('editor', 'displaytext', get_string('displaytext', 'block_latorre'));
+        $mform->setType('displaytext', PARAM_RAW);
+        $mform->addRule('displaytext', null, 'required', null, 'clioent');
     }
  }
  
