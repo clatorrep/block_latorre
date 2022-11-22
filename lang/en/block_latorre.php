@@ -47,3 +47,10 @@ $string['pagetitle'] = 'Page\'s Title';
 $string['displaytext'] = 'Resúmen de la página';
 $string['displaypicture'] = 'Display image';
 $string['picturefields'] = 'Image';
+
+$string['pictureselect'] = 'Pick a color';
+$string['red'] = 'Red';
+$string['green'] = 'Green';
+$string['blue'] = 'Blue';
+
+$string['displaydate'] = 'Display timedate';

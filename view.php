@@ -59,8 +59,24 @@ $editnode->make_active();
 
 $latorre = new latorre_form();
 
-echo $OUTPUT->header();
+// Rescatar información importante
+$toform['blockid'] = $blockid;
+$toform['courseid'] = $courseid;
+$latorre->set_data($toform);
 
-$latorre->display();
-
-echo $OUTPUT->footer();
+if ($latorre->is_cancelled()) {
+    // Los formularios cancelados redirigen a la pagina principal del curso.
+    $courseurl = new moodle_url('/course/view.php', array('id' => $courseid));
+    redirect($courseurl);
+} elseif ($latorre->get_data()) {
+    // Código de proceso de datos.
+    $courseurl = new moodle_url('/course/view.php', array('id' => $id));
+    redirect($courseurl);
+} else {
+    // Primera vez o con errores
+    $site = get_site();
+    // Desplegamos nuestra pagina
+    echo $OUTPUT->header();
+    $latorre->display();
+    echo $OUTPUT->footer();
+}

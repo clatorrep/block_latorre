@@ -23,12 +23,20 @@
  */
 
  require_once("$CFG->libdir/formslib.php");
+ require_once("$CFG->dirroot/blocks/latorre/lib.php");
 
  class latorre_form extends moodleform
  {
     function definition()
     {
         $mform =& $this->_form;
+
+        // Elementos ocultos
+        $mform->addElement('hidden', 'blockid');
+        $mform->setType('blockid', PARAM_RAW);
+        $mform->addElement('hidden', 'courseid');
+        $mform->setType('courseid', PARAM_RAW);
+
         $mform->addElement('header', 'displayinfo', get_string('textfields', 'block_latorre'));
 
         $mform->addElement('text', 'pagetitle', get_string('pagetitle', 'block_latorre'));
@@ -48,6 +56,23 @@
         // Opcion si/no
         $mform->addElement('selectyesno', 'displaypicture', get_string('displaypicture', 'block_latorre'));
         $mform->setDefault('displaypicture', 1);
+
+        // Botones de radio
+        $images = block_latorre_images();
+        $radioarray = array();
+        for ($i=0; $i < count($images); $i++) { 
+            $radioarray[] =& $mform->createElement('radio', 'picture', '', $images[$i], $i);
+        }
+        $mform->addGroup($radioarray, 'radioar', get_string('pictureselect', 'block_latorre'), array(' '), false);
+
+        // Fechas
+        $mform->addElement('header', 'dateinfo', get_string('date'));
+        // Selectores
+        $mform->addElement('date_time_selector', 'displaydate', get_string('displaydate', 'block_latorre'), array('optional' => true));
+        $mform->setAdvanced('optional');
+
+        // Botones
+        $this->add_action_buttons();
     }
  }
  
