@@ -39,3 +39,4 @@ $string['allowhtml_desc'] = 'Desactivar html en el bloque latorre';
 
 $string['textfields'] = 'Campos de texto';
 $string['addpage'] = 'Añadir página';
+$string['edithtml'] = 'El bloque Latorre';

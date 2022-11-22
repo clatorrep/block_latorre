@@ -25,7 +25,7 @@
 require_once('../../config.php');
 require_once('latorre_form.php');
 
-global $DB;
+global $DB, $OUTPUT, $PAGE;
 
 // Verifique todas las variables requeridas
 $courseid = required_param('courseid', PARAM_INT);
@@ -38,6 +38,14 @@ if (!$course = $DB->get_record('course', array('id' => $courseid))) {
 
 require_login($course);
 
+$PAGE->set_url('/blocks/latorre/view.php', array('id' => $courseid));
+$PAGE->set_pagelayout('standard');
+$PAGE->set_heading(get_string('edithtml', 'block_latorre'));
+
 $latorre = new latorre_form();
 
+echo $OUTPUT->header();
+
 $latorre->display();
+
+echo $OUTPUT->footer();
