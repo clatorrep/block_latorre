@@ -47,3 +47,7 @@ $string['pagetitle'] = 'Título de la página';
 $string['displaytext'] = 'Page resume';
 $string['displaypicture'] = 'Desplegar la imagen';
 $string['picturefields'] = 'Imagen';
+$string['pictureselect'] = 'Selecciona un color';
+$string['red'] = 'Rojo';
+$string['green'] = 'Verde';
+$string['blue'] = 'Azul';

@@ -23,6 +23,7 @@
  */
 
  require_once("$CFG->libdir/formslib.php");
+ require_once("$CFG->dirroot/blocks/latorre/lib.php");
 
  class latorre_form extends moodleform
  {
@@ -48,6 +49,14 @@
         // Opcion si/no
         $mform->addElement('selectyesno', 'displaypicture', get_string('displaypicture', 'block_latorre'));
         $mform->setDefault('displaypicture', 1);
+
+        // Botones de radio
+        $images = block_latorre_images();
+        $radioarray = array();
+        for ($i=0; $i < count($images); $i++) { 
+            $radioarray[] =& $mform->createElement('radio', 'picture', '', $images[$i], $i);
+        }
+        $mform->addGroup($radioarray, 'radioar', get_string('pictureselect', 'block_latorre'), array(' '), false);
     }
  }
  
