@@ -80,6 +80,20 @@ class block_latorre extends block_base
         return parent::instance_config_save($data, $nolongerused);
     }
 
+    /**
+     * Dónde se puede o no instalar el bloque.
+     */
+    public function applicable_formats()
+    {
+        return array(
+            'site-index' => true,
+            'course-view' => false,
+            'course-view-social' => false,
+            'mod' => true,
+            'mod-quiz' => false,
+        );
+    }
+
     public function instance_allow_multipe()
     {
         return true;
@@ -89,4 +103,9 @@ class block_latorre extends block_base
     {
         return true;
     }
+
+    /* public function hide_header()
+    {
+        return true;
+    } */
 }
