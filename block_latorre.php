@@ -31,15 +31,88 @@ class block_latorre extends block_base
 
     public function get_content()
     {
+        global $COURSE;
+
+        // Deshabilitar
         if ($this->content !== null) {
-            return $this->content;
+            if ($this->config->disabled) {
+                return null;
+            } else {
+                return $this->content;
+            }
         }
 
         $this->content = new stdClass;
-        //$this->content->text = 'The content of our Latorre block!';
-        $this->content->text = !empty($this->config->text) ? $this->config->text : 'The content of our Latorre block!';
-        $this->content->footer = 'Footer here...';
+
+        if (!empty($this->config->text)) {
+            $this->content->text = $this->config->text;
+        } else {
+            $this->content->text = '<h2><b>Este es el bloque del Latorre</b></h2>';
+        }
+
+        //$this->content->footer = '<i><small>Todos los derechos reservados.</small></i>';
+
+        $url = new moodle_url('/blocks/latorre/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+        $this->content->footer = html_writer::link($url, get_string('addpage', 'block_latorre'));
 
         return $this->content;
     }
+
+    public function specialization()
+    {
+        if (isset($this->config)) {
+            // Titulo
+            if (empty($this->config->title)) {
+                $this->title = get_string('defaulttitle', 'block_latorre');
+            } else {
+                $this->title = $this->config->title;
+            }
+
+            // Texto
+            if (empty($this->config->text)) {
+                $this->config->text = get_string('defaulttext', 'block_latorre');
+            }
+        }
+    }
+
+    public function instance_config_save($data, $nolongerused = false)
+    {
+        global $CFG;
+
+        if (!empty($CFG->block_latorre_allowhtml)) {
+            $data->text = strip_tags($data->text);
+        }
+
+        // Implementación predeterminada definida en la clase principal
+        return parent::instance_config_save($data, $nolongerused);
+    }
+
+    /**
+     * Dónde se puede o no instalar el bloque.
+     */
+    public function applicable_formats()
+    {
+        return array(
+            'site-index' => true,
+            'course-view' => false,
+            'course-view-social' => false,
+            'mod' => true,
+            'mod-quiz' => false,
+        );
+    }
+
+    public function instance_allow_multipe()
+    {
+        return true;
+    }
+
+    public function has_config()
+    {
+        return true;
+    }
+
+    /* public function hide_header()
+    {
+        return true;
+    } */
 }

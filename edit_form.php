@@ -15,24 +15,36 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Edit form
+ * Latorre block
  *
  * @package   block_latorre
  * @copyright 2022 Cristóbal Latorre Padilla - clatorre@bcnschool.cl
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-class block_latorre_edit_form extends block_edit_form {
-        
-    protected function specific_definition($mform) {
-        
-        // Section header title according to language file.
+class block_latorre_edit_form extends block_edit_form
+{
+    protected function specific_definition($mform)
+    {
+        // Sección de configuracion de parámetros
         $mform->addElement('header', 'config_header', get_string('blocksettings', 'block'));
 
-        // A sample string variable with a default value.
+        // Crear el parámetro para el título del bloque
+        $mform->addElement('text', 'config_title', get_string('blocktitle', 'block_latorre'));
+        $mform->setDefault('config_title', 'Default Title');
+        $mform->setType('config_title', PARAM_RAW);
+
+        // Una cadena de texto a desplegarse
         $mform->addElement('text', 'config_text', get_string('blockstring', 'block_latorre'));
-        $mform->setDefault('config_text', 'default value');
+        $mform->setDefault('config_text', 'Default Text');
         $mform->setType('config_text', PARAM_RAW);
 
+        // Ocutar
+        $mform->addElement(
+            'advcheckbox',
+            'config_disabled',
+            get_string('blockdisabled', 'block_latorre'),
+            'Desactivar el bloque'
+        );
     }
 }

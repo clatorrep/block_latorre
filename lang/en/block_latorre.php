@@ -26,4 +26,24 @@ $string['pluginname'] = 'Latorre block';
 $string['latorre'] = 'Latorre';
 $string['latorre:addinstance'] = 'Add a new latorre block';
 $string['latorre:myaddinstance'] = 'Add a new latorre block to the My Moodle page';
-$string['blockstring'] = 'Value:';
+
+$string['blockstring'] = 'Text:';
+$string['blocktitle'] = 'Title:';
+$string['defaulttitle'] = 'Latorre\'s Block';
+$string['defaulttext'] = 'Lorem ipsum';
+
+$string['blockdisabled'] = 'Bloque deshabilitado';
+
+$string['allowhtml'] = 'Disable html';
+$string['allowhtml_desc'] = 'Disable html in the block latorre';
+
+$string['textfields'] = 'Text fields';
+$string['addpage'] = 'Add page';
+$string['edithtml'] = 'The block Latorre';
+
+$string['latorresettings'] = 'Latorre';
+$string['editpage'] = 'Edit parameters';
+$string['pagetitle'] = 'Page\'s Title';
+$string['displaytext'] = 'Resúmen de la página';
+$string['displaypicture'] = 'Display image';
+$string['picturefields'] = 'Image';
