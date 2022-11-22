@@ -30,6 +30,13 @@
     function definition()
     {
         $mform =& $this->_form;
+
+        // Elementos ocultos
+        $mform->addElement('hidden', 'blockid');
+        $mform->setType('blockid', PARAM_RAW);
+        $mform->addElement('hidden', 'courseid');
+        $mform->setType('courseid', PARAM_RAW);
+
         $mform->addElement('header', 'displayinfo', get_string('textfields', 'block_latorre'));
 
         $mform->addElement('text', 'pagetitle', get_string('pagetitle', 'block_latorre'));
@@ -63,6 +70,9 @@
         // Selectores
         $mform->addElement('date_time_selector', 'displaydate', get_string('displaydate', 'block_latorre'), array('optional' => true));
         $mform->setAdvanced('optional');
+
+        // Botones
+        $this->add_action_buttons();
     }
  }
  
