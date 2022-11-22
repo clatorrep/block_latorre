@@ -40,3 +40,6 @@ $string['allowhtml_desc'] = 'Disable html in the block latorre';
 $string['textfields'] = 'Text fields';
 $string['addpage'] = 'Add page';
 $string['edithtml'] = 'The block Latorre';
+
+$string['latorresettings'] = 'Latorre';
+$string['editpage'] = 'Edit parameters';
