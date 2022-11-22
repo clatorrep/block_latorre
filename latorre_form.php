@@ -33,11 +33,11 @@
 
         $mform->addElement('text', 'pagetitle', get_string('pagetitle', 'block_latorre'));
         $mform->setType('pagetitle', PARAM_RAW);
-        $mform->addRule('pagetitle', null, 'required', null, 'clioent');
+        $mform->addRule('pagetitle', null, 'required', null, 'client');
         
         $mform->addElement('editor', 'displaytext', get_string('displaytext', 'block_latorre'));
         $mform->setType('displaytext', PARAM_RAW);
-        $mform->addRule('displaytext', null, 'required', null, 'clioent');
+        $mform->addRule('displaytext', null, 'required', null, 'client');
 
         // File picker
         $mform->addElement('filepicker', 'filename', get_string('file'), null, array('accepted_types' => '*'));
