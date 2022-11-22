@@ -36,3 +36,6 @@ $string['blockdisabled'] = 'Bloque deshabilitado';
 
 $string['allowhtml'] = 'Disable html';
 $string['allowhtml_desc'] = 'Disable html in the block latorre';
+
+$string['textfields'] = 'Text fields';
+$string['addpage'] = 'Add page';

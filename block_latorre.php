@@ -31,11 +31,15 @@ class block_latorre extends block_base
 
     public function get_content()
     {
+        global $COURSE;
+
         // Deshabilitar
-        if ($this->config->disabled) {
-            return null;
-        } else if ($this->content !== null) {
-            return $this->content;
+        if ($this->content !== null) {
+            if ($this->config->disabled) {
+                return null;
+            } else {
+                return $this->content;
+            }
         }
 
         $this->content = new stdClass;
@@ -46,7 +50,10 @@ class block_latorre extends block_base
             $this->content->text = '<h2><b>Este es el bloque del Latorre</b></h2>';
         }
 
-        $this->content->footer = '<i><small>Todos los derechos reservados.</small></i>';
+        //$this->content->footer = '<i><small>Todos los derechos reservados.</small></i>';
+
+        $url = new moodle_url('/blocks/latorre/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+        $this->content->footer = html_writer::link($url, get_string('addpage', 'block_latorre'));
 
         return $this->content;
     }
