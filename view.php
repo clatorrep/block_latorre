@@ -53,6 +53,7 @@ $PAGE->set_heading(get_string('edithtml', 'block_latorre'));
 
 // Crear el nodo del bloque en las migas de pan
 $settingsnode = $PAGE->settingsnav->add(get_string('latorresettings', 'block_latorre'));
+
 // Creamos la URL del bloque con el id del bloque
 $editurl = new moodle_url('/blocks/latorre/view.php', array('id' => $id, 'courseid' => $courseid, 'blockid' => $blockid));
 // Añadimos el nodo con la url del bloque
@@ -61,11 +62,11 @@ $editnode = $settingsnode->add(get_string('editpage', 'block_latorre'), $editurl
 $editnode->make_active();
 
 $latorre = new latorre_form();
-
 // Rescatar información importante
 $toform['blockid'] = $blockid;
 $toform['courseid'] = $courseid;
 $toform['id'] = $id;
+
 $latorre->set_data($toform);
 
 if ($latorre->is_cancelled()) {
@@ -76,21 +77,16 @@ if ($latorre->is_cancelled()) {
     // Código de proceso de datos.
     $courseurl = new moodle_url('/course/view.php', array('id' => $courseid));
 
-    $data = new stdClass;
-    $data->blockid = $fromform->blockid;
-    $data->pagetitle = $fromform->pagetitle;
-    $data->displaytext = $fromform->displaytext['text'];
-    $data->filename = $fromform->filename;
-    $data->displaypicture = $fromform->displaypicture;
-    $data->picture = $fromform->picture;
-    $data->displaydate = $fromform->displaydate;
+    $fromform->displaytext = $fromform->displaytext['text'];
+
 
     if ($fromform->id != 0) {
-        if (!$DB->update_record('block_latorre', $data)) {
+        
+        if (!$DB->update_record('block_latorre', $fromform)) {
             print_error('inserterror', 'block_latorre');
         }
     } else {
-        if (!$DB->insert_record('block_latorre', $data)) {
+        if (!$DB->insert_record('block_latorre', $fromform)) {
             print_error('inserterror', 'block_latorre');
         }
     }
@@ -107,8 +103,6 @@ if ($latorre->is_cancelled()) {
             block_latorre_print_page($latorrepage);
         } else {
             $latorrepage->displaytext = array('text' => $latorrepage->displaytext);
-            /* print_object($latorrepage);
-            exit(); */
             $latorre->set_data($latorrepage);
             $latorre->display();
         }
