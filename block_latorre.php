@@ -71,13 +71,13 @@ class block_latorre extends block_base
                         $editurl,
                         html_writer::img($editpicurl, 'edit')
                     );
-                    
+
                     // DELETE
                     $deleteparam = array(
                         'id' => $simplehtmlpage->id,
                         'courseid' => $COURSE->id
                     );
-                    $deleteurl = new moodle_url('/block/latorre/delete.php', $deleteparam);
+                    $deleteurl = new moodle_url('/blocks/latorre/delete.php', $deleteparam);
                     $deletepicurl = new moodle_url('/pix/t/delete.png');
                     $delete = html_writer::link(
                         $deleteurl,
@@ -100,8 +100,8 @@ class block_latorre extends block_base
 
                 $this->content->text .= html_writer::start_tag('li');
                 $this->content->text .= html_writer::link($pageurl, $simplehtmlpage->pagetitle);
-                $this->content->text .= " $edit";
-                $this->content->text .= " $delete";
+                $this->content->text .= "&nbsp$edit";
+                $this->content->text .= "&nbsp$delete";
                 $this->content->text .= html_writer::end_tag('li');
             }
             $this->content->text .= html_writer::end_tag('ul');
