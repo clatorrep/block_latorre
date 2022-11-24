@@ -47,6 +47,9 @@
         $mform->setType('displaytext', PARAM_RAW);
         $mform->addRule('displaytext', null, 'required', null, 'client');
 
+        //TextArea
+        // $mform->addElement('textarea', 'displaytext', get_string('displaytext', 'block_latorre'), 'wrap="virtual" rows="5" cols="60"');
+
         // File picker
         $mform->addElement('filepicker', 'filename', get_string('file'), null, array('accepted_types' => '*'));
 

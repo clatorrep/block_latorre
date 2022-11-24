@@ -44,7 +44,7 @@ $string['edithtml'] = 'The block Latorre';
 $string['latorresettings'] = 'Latorre';
 $string['editpage'] = 'Edit parameters';
 $string['pagetitle'] = 'Page\'s Title';
-$string['displaytext'] = 'Resúmen de la página';
+$string['displaytext'] = 'Page\'s resume';
 $string['displaypicture'] = 'Display image';
 $string['picturefields'] = 'Image';
 
