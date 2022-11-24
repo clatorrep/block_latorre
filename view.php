@@ -46,6 +46,10 @@ if (!$course = $DB->get_record('course', array('id' => $courseid))) {
 }
 
 require_login($course);
+/* require_capability(
+    'block/latorre:managepages',
+    context_course::instance($courseid)
+); */
 
 $PAGE->set_url('/blocks/latorre/view.php', array('id' => $courseid));
 $PAGE->set_pagelayout('standard');

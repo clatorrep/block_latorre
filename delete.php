@@ -18,6 +18,10 @@
  }
 
  require_login($course);
+ require_capability(
+    'block/latorre:managepages',
+    context_course::instance($courseid)
+);
 
  if (!$latorrepage = $DB->get_record('block_latorre', array('id' => $id,))) {
     print_error('nopage', 'block_latorre', '', $id);

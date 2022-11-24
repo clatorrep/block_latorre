@@ -26,6 +26,9 @@ $string['pluginname'] = 'Latorre, bloque';
 $string['latorre'] = 'Latorre';
 $string['latorre:addinstance'] = 'Agregar un nuevo bloque latorre';
 $string['latorre:myaddinstance'] = 'Agregar un nuevo bloque latorre a la página My Moodle';
+$string['latorre:viewpages'] = 'Visualizar páginas en latorre';
+$string['latorre:managepages'] = 'Administrar páginas en latorre';
+$string['latorrefooter'] = 'Todos los derechos reservados';
 
 $string['blockstring'] = 'Texto:';
 $string['blocktitle'] = 'Título:';
