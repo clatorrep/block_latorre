@@ -167,6 +167,12 @@ class block_latorre extends block_base
         return true;
     }
 
+    public function instance_delete()
+    {
+        global $DB;
+        $DB->delete_records('block_latorre', array('blockid' => $this->instance->id));
+    }
+
     /* public function hide_header()
     {
         return true;
