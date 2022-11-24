@@ -15,3 +15,9 @@
         html_writer::tag('img', '',array('alt' => get_string('green', 'block_latorre'), 'src' => 'pix/green.png', 'width' => '30px'))
     );
  }
+
+ function block_latorre_print_page($latorre, $return = false)
+ {
+    print_object($latorre);
+    return $return;
+ }

@@ -36,6 +36,9 @@ $blockid = required_param('blockid', PARAM_INT);
 // Busca si hay más variables
 $id = optional_param('id', 0, PARAM_INT);
 
+// Recuper el parámetro viewpage
+$viewpage = optional_param('viewpage', false, PARAM_BOOL);
+
 // Devuelve un único registro de la base de datos como un objeto
 // donde se cumplen todas las condiciones dadas.
 if (!$course = $DB->get_record('course', array('id' => $courseid))) {
@@ -91,6 +94,11 @@ if ($latorre->is_cancelled()) {
     $site = get_site();
     // Desplegamos nuestra pagina
     echo $OUTPUT->header();
-    $latorre->display();
+    if ($viewpage) {
+        $latorrepage = $DB->get_record('block_latorre', array('id' => $id));
+        block_latorre_print_page($latorrepage);
+    } else {
+        $latorre->display();
+    }
     echo $OUTPUT->footer();
 }

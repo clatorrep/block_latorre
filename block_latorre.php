@@ -31,14 +31,14 @@ class block_latorre extends block_base
 
     public function get_content()
     {
-        global $COURSE;
+        global $COURSE, $DB;
 
         // Deshabilitar
         if ($this->content !== null) {
-            if ($this->config->disabled) {
-                return null;
-            } else {
+            if (!$this->config->disabled) {
                 return $this->content;
+            } else {
+                return null;
             }
         }
 
@@ -50,8 +50,29 @@ class block_latorre extends block_base
             $this->content->text = '<h2><b>Este es el bloque del Latorre</b></h2>';
         }
 
-        //$this->content->footer = '<i><small>Todos los derechos reservados.</small></i>';
+        // Desplegar lso registros de la tabla
+        if ($simplehtmlpages = $DB->get_records('block_latorre', array('blockid' => $this->instance->id))) {
+            $this->content->text .= html_writer::start_tag('ul');
+            foreach ($simplehtmlpages as $simplehtmlpage) {
 
+                $pageurl = new moodle_url(
+                    '/blocks/latorre/view.php',
+                    array(
+                        'blockid' => $this->instance->id,
+                        'courseid' => $COURSE->id,
+                        'id' => $simplehtmlpage->id,
+                        'viewpage' => '1'
+                    )
+                );
+
+                $this->content->text .= html_writer::start_tag('li');
+                $this->content->text .= html_writer::link($pageurl, $simplehtmlpage->pagetitle);
+                $this->content->text .= html_writer::end_tag('li');
+            }
+            $this->content->text .= html_writer::end_tag('ul');
+        }
+
+        // footer
         $url = new moodle_url('/blocks/latorre/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
         $this->content->footer = html_writer::link($url, get_string('addpage', 'block_latorre'));
 
