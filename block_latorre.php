@@ -59,6 +59,7 @@ class block_latorre extends block_base
             foreach ($simplehtmlpages as $simplehtmlpage) {
 
                 if ($canmanage) {
+                    //EDIT
                     $pageparam = array(
                         'blockid' => $this->instance->id,
                         'courseid' => $COURSE->id,
@@ -68,9 +69,23 @@ class block_latorre extends block_base
                     $editpicurl = new moodle_url('/pix/t/edit.png');
                     $edit = html_writer::link(
                         $editurl,
-                        html_writer::img($editpicurl, 'edit'));
+                        html_writer::img($editpicurl, 'edit')
+                    );
+                    
+                    // DELETE
+                    $deleteparam = array(
+                        'id' => $simplehtmlpage->id,
+                        'courseid' => $COURSE->id
+                    );
+                    $deleteurl = new moodle_url('/block/latorre/delete.php', $deleteparam);
+                    $deletepicurl = new moodle_url('/pix/t/delete.png');
+                    $delete = html_writer::link(
+                        $deleteurl,
+                        html_writer::img($deletepicurl, 'delete')
+                    );
                 } else {
                     $edit = '';
+                    $delete = '';
                 }
 
                 $pageurl = new moodle_url(
@@ -85,7 +100,8 @@ class block_latorre extends block_base
 
                 $this->content->text .= html_writer::start_tag('li');
                 $this->content->text .= html_writer::link($pageurl, $simplehtmlpage->pagetitle);
-                $this->content->text .= $edit;
+                $this->content->text .= " $edit";
+                $this->content->text .= " $delete";
                 $this->content->text .= html_writer::end_tag('li');
             }
             $this->content->text .= html_writer::end_tag('ul');
