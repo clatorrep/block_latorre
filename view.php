@@ -68,9 +68,23 @@ if ($latorre->is_cancelled()) {
     // Los formularios cancelados redirigen a la pagina principal del curso.
     $courseurl = new moodle_url('/course/view.php', array('id' => $courseid));
     redirect($courseurl);
-} elseif ($latorre->get_data()) {
+} elseif ($fromform = $latorre->get_data()) {
     // Código de proceso de datos.
-    $courseurl = new moodle_url('/course/view.php', array('id' => $id));
+    $courseurl = new moodle_url('/course/view.php', array('id' => $courseid));
+
+    $data = new stdClass;
+    $data->blockid = $fromform->blockid;
+    $data->pagetitle = $fromform->pagetitle;
+    $data->displaytext = $fromform->displaytext['text'];
+    $data->filename = $fromform->filename;
+    $data->displaypicture = $fromform->displaypicture;
+    $data->picture = $fromform->picture;
+    $data->displaydate = $fromform->displaydate;
+
+    if (!$DB->insert_record('block_latorre', $data)) {
+        print_error('inserterror', 'block_latorre');
+    }
+
     redirect($courseurl);
 } else {
     // Primera vez o con errores

@@ -90,7 +90,7 @@ class block_latorre extends block_base
     /**
      * Dónde se puede o no instalar el bloque.
      */
-    public function applicable_formats()
+    /* public function applicable_formats()
     {
         return array(
             'site-index' => true,
@@ -99,7 +99,7 @@ class block_latorre extends block_base
             'mod' => true,
             'mod-quiz' => false,
         );
-    }
+    } */
 
     public function instance_allow_multipe()
     {
