@@ -36,6 +36,8 @@
         $mform->setType('blockid', PARAM_RAW);
         $mform->addElement('hidden', 'courseid');
         $mform->setType('courseid', PARAM_RAW);
+        $mform->addElement('hidden', 'id', '0');
+        $mform->setType('id', PARAM_BOOL);
 
         $mform->addElement('header', 'displayinfo', get_string('textfields', 'block_latorre'));
 

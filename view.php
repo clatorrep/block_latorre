@@ -65,6 +65,7 @@ $latorre = new latorre_form();
 // Rescatar información importante
 $toform['blockid'] = $blockid;
 $toform['courseid'] = $courseid;
+$toform['id'] = $id;
 $latorre->set_data($toform);
 
 if ($latorre->is_cancelled()) {
@@ -84,8 +85,14 @@ if ($latorre->is_cancelled()) {
     $data->picture = $fromform->picture;
     $data->displaydate = $fromform->displaydate;
 
-    if (!$DB->insert_record('block_latorre', $data)) {
-        print_error('inserterror', 'block_latorre');
+    if ($fromform->id != 0) {
+        if (!$DB->update_record('block_latorre', $data)) {
+            print_error('inserterror', 'block_latorre');
+        }
+    } else {
+        if (!$DB->insert_record('block_latorre', $data)) {
+            print_error('inserterror', 'block_latorre');
+        }
     }
 
     redirect($courseurl);
@@ -94,9 +101,17 @@ if ($latorre->is_cancelled()) {
     $site = get_site();
     // Desplegamos nuestra pagina
     echo $OUTPUT->header();
-    if ($viewpage) {
+    if ($id) {
         $latorrepage = $DB->get_record('block_latorre', array('id' => $id));
-        block_latorre_print_page($latorrepage);
+        if ($viewpage) {
+            block_latorre_print_page($latorrepage);
+        } else {
+            $latorrepage->displaytext = array('text' => $latorrepage->displaytext);
+            /* print_object($latorrepage);
+            exit(); */
+            $latorre->set_data($latorrepage);
+            $latorre->display();
+        }
     } else {
         $latorre->display();
     }
