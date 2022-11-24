@@ -31,14 +31,14 @@ class block_latorre extends block_base
 
     public function get_content()
     {
-        global $COURSE;
+        global $COURSE, $DB, $PAGE;
 
         // Deshabilitar
         if ($this->content !== null) {
-            if ($this->config->disabled) {
-                return null;
-            } else {
+            if (!$this->config->disabled) {
                 return $this->content;
+            } else {
+                return null;
             }
         }
 
@@ -50,8 +50,64 @@ class block_latorre extends block_base
             $this->content->text = '<h2><b>Este es el bloque del Latorre</b></h2>';
         }
 
-        //$this->content->footer = '<i><small>Todos los derechos reservados.</small></i>';
+        // Verifica si se encuentra en modo edición
+        $canmanage = $PAGE->user_is_editing($this->instance->id);
 
+        // Desplegar los registros de la tabla
+        if ($simplehtmlpages = $DB->get_records('block_latorre', array('blockid' => $this->instance->id))) {
+            $this->content->text .= html_writer::start_tag('ul');
+            foreach ($simplehtmlpages as $simplehtmlpage) {
+
+                if ($canmanage) {
+                    //EDIT
+                    $pageparam = array(
+                        'blockid' => $this->instance->id,
+                        'courseid' => $COURSE->id,
+                        'id' => $simplehtmlpage->id
+                    );
+                    $editurl = new moodle_url('/blocks/latorre/view.php', $pageparam);
+                    $editpicurl = new moodle_url('/pix/t/edit.png');
+                    $edit = html_writer::link(
+                        $editurl,
+                        html_writer::img($editpicurl, 'edit')
+                    );
+                    
+                    // DELETE
+                    $deleteparam = array(
+                        'id' => $simplehtmlpage->id,
+                        'courseid' => $COURSE->id
+                    );
+                    $deleteurl = new moodle_url('/block/latorre/delete.php', $deleteparam);
+                    $deletepicurl = new moodle_url('/pix/t/delete.png');
+                    $delete = html_writer::link(
+                        $deleteurl,
+                        html_writer::img($deletepicurl, 'delete')
+                    );
+                } else {
+                    $edit = '';
+                    $delete = '';
+                }
+
+                $pageurl = new moodle_url(
+                    '/blocks/latorre/view.php',
+                    array(
+                        'blockid' => $this->instance->id,
+                        'courseid' => $COURSE->id,
+                        'id' => $simplehtmlpage->id,
+                        'viewpage' => '1'
+                    )
+                );
+
+                $this->content->text .= html_writer::start_tag('li');
+                $this->content->text .= html_writer::link($pageurl, $simplehtmlpage->pagetitle);
+                $this->content->text .= " $edit";
+                $this->content->text .= " $delete";
+                $this->content->text .= html_writer::end_tag('li');
+            }
+            $this->content->text .= html_writer::end_tag('ul');
+        }
+
+        // footer
         $url = new moodle_url('/blocks/latorre/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
         $this->content->footer = html_writer::link($url, get_string('addpage', 'block_latorre'));
 
