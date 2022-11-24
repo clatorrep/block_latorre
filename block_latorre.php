@@ -51,7 +51,9 @@ class block_latorre extends block_base
         }
 
         // Verifica si se encuentra en modo edición
-        $canmanage = $PAGE->user_is_editing($this->instance->id);
+        $context = context_course::instance($COURSE->id);
+        $canmanage = has_capability('block/latorre:managepages', $context) && $PAGE->user_is_editing($this->instance->id);
+        $canview = has_capability('block/latorre:viewpages', $context);
 
         // Desplegar los registros de la tabla
         if ($simplehtmlpages = $DB->get_records('block_latorre', array('blockid' => $this->instance->id))) {
@@ -99,7 +101,11 @@ class block_latorre extends block_base
                 );
 
                 $this->content->text .= html_writer::start_tag('li');
-                $this->content->text .= html_writer::link($pageurl, $simplehtmlpage->pagetitle);
+                if ($canview) {
+                    $this->content->text .= html_writer::link($pageurl, $simplehtmlpage->pagetitle);
+                } else {
+                    $this->content->text .= html_writer::tag('p', $simplehtmlpage->pagetitle);
+                }
                 $this->content->text .= "&nbsp$edit";
                 $this->content->text .= "&nbsp$delete";
                 $this->content->text .= html_writer::end_tag('li');
@@ -108,8 +114,12 @@ class block_latorre extends block_base
         }
 
         // footer
-        $url = new moodle_url('/blocks/latorre/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
-        $this->content->footer = html_writer::link($url, get_string('addpage', 'block_latorre'));
+        if (has_capability('block/latorre:managepages', $context)) {
+            $url = new moodle_url('/blocks/latorre/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+            $this->content->footer = html_writer::link($url, get_string('addpage', 'block_latorre'));
+        } else {
+            $this->content->footer = html_writer::tag('p', get_string('latorrefooter', 'block_latorre'));
+        }
 
         return $this->content;
     }

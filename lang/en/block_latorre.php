@@ -28,6 +28,7 @@ $string['latorre:addinstance'] = 'Add a new latorre block';
 $string['latorre:myaddinstance'] = 'Add a new latorre block to the My Moodle page';
 $string['latorre:viewpages'] = 'View latorre\'s pages';
 $string['latorre:managepages'] = 'Manage latorre\'s pages';
+$string['latorrefooter'] = 'All rights reserved';
 
 $string['blockstring'] = 'Text:';
 $string['blocktitle'] = 'Title:';
