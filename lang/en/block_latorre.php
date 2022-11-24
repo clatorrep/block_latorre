@@ -54,3 +54,5 @@ $string['green'] = 'Green';
 $string['blue'] = 'Blue';
 
 $string['displaydate'] = 'Display timedate';
+
+$string['deletepage'] = 'Are you sure to delete this record? Once you do, there\'s no way to get it back.';

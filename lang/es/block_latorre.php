@@ -54,3 +54,5 @@ $string['green'] = 'Verde';
 $string['blue'] = 'Azul';
 
 $string['displaydate'] = 'Desplegar fecha y hora';
+
+$string['deletepage'] = '¿Está seguro de borrar este registro? Una vez que lo haga, no hay forma de recuperarlo.';
