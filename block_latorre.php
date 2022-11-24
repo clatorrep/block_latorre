@@ -31,7 +31,7 @@ class block_latorre extends block_base
 
     public function get_content()
     {
-        global $COURSE, $DB;
+        global $COURSE, $DB, $PAGE;
 
         // Deshabilitar
         if ($this->content !== null) {
@@ -50,10 +50,28 @@ class block_latorre extends block_base
             $this->content->text = '<h2><b>Este es el bloque del Latorre</b></h2>';
         }
 
-        // Desplegar lso registros de la tabla
+        // Verifica si se encuentra en modo edición
+        $canmanage = $PAGE->user_is_editing($this->instance->id);
+
+        // Desplegar los registros de la tabla
         if ($simplehtmlpages = $DB->get_records('block_latorre', array('blockid' => $this->instance->id))) {
             $this->content->text .= html_writer::start_tag('ul');
             foreach ($simplehtmlpages as $simplehtmlpage) {
+
+                if ($canmanage) {
+                    $pageparam = array(
+                        'blockid' => $this->instance->id,
+                        'courseid' => $COURSE->id,
+                        'id' => $simplehtmlpage->id
+                    );
+                    $editurl = new moodle_url('/blocks/latorre/view.php', $pageparam);
+                    $editpicurl = new moodle_url('/pix/t/edit.png');
+                    $edit = html_writer::link(
+                        $editurl,
+                        html_writer::img($editpicurl, 'edit'));
+                } else {
+                    $edit = '';
+                }
 
                 $pageurl = new moodle_url(
                     '/blocks/latorre/view.php',
@@ -67,6 +85,7 @@ class block_latorre extends block_base
 
                 $this->content->text .= html_writer::start_tag('li');
                 $this->content->text .= html_writer::link($pageurl, $simplehtmlpage->pagetitle);
+                $this->content->text .= $edit;
                 $this->content->text .= html_writer::end_tag('li');
             }
             $this->content->text .= html_writer::end_tag('ul');
